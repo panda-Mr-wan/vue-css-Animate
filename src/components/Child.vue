@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Child组件</h3>
-        <p>通过父组件自定义事件传递过来的Child2的值:{{message}}</p>
+        <button @click="childMessage">给父组件传值</button>
     </div>
 </template>
 
@@ -10,13 +10,13 @@
         name:"Child",
         data(){
             return {
-                message:""
+                message:"我是大帅哥"
             }
         },
-        mounted(){
-            this.$on("myEvent",msg => {
-                this.message=msg;
-            })
+        methods:{
+            childMessage(){
+                this.$emit("myEvent",this.message)
+            }
         }
     }
 </script>

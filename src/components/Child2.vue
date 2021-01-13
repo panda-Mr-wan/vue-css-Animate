@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Child2组件</h3>
-        <button @click="changeMsg">给Child传值</button>
+        <button @click="changeMsg">给父组件传值</button>
     </div>
 </template>
 
@@ -10,12 +10,12 @@
         name:"Child2",
         data(){
             return {
-                message:"我是大帅哥"
+                message:"我是大美女"
             }
         },
         methods:{
             changeMsg(){
-                this.$parent.$refs.child.$emit("myEvent",this.message)
+                this.$emit("myEvent",this.message)
             }
         }
     }
