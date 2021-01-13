@@ -14,7 +14,7 @@
             }
         },
         mounted(){
-            this.$parent.$on("myEvent",msg => {
+            this.$on("myEvent",msg => {
                 this.message=msg;
             })
         }

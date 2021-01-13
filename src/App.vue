@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>App组件</h3>
-    <Child />
+    <Child ref="child" />
     <hr>
     <Child2 />
   </div>

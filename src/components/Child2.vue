@@ -15,7 +15,7 @@
         },
         methods:{
             changeMsg(){
-                this.$parent.$emit("myEvent",this.message)
+                this.$parent.$refs.child.$emit("myEvent",this.message)
             }
         }
     }
