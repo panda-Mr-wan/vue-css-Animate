@@ -1,22 +1,11 @@
 <template>
   <div>
-    <h3>App组件</h3>
-    <hr>
-    <Child>
-      <p slot="one">有名插槽一替换的内容message:{{message}}</p>
-      <p slot="two">有名插槽二替换的内容</p>
-      <!-- <p>无名插槽替换的内容</p> -->
-    </Child>
-    <hr>
-    <Child2 >
-      <template slot-scope="props">
-        <ul>
-          <li  v-for="(value,index) in props.data" :key="index">
-            {{value}}
-          </li>
-        </ul>
-      </template>
-    </Child2>
+    <h3>使用component组件实现组件的动态切换</h3>
+    <!-- 如果把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。为此可以添加一个 keep-alive 指令参数： -->
+    <keep-alive>
+    <component :is="com"></component>
+    </keep-alive>
+    <button @click="change">点击切换组件</button>
   </div>
 </template>
 
@@ -28,7 +17,12 @@
     components:{ Child, Child2 },
     data(){
       return {
-        message:"我是大帅哥"
+        com:"Child"
+      }
+    },
+    methods:{
+      change(){
+        this.com=this.com=="Child2"?"Child":"Child2"
       }
     }
   }
