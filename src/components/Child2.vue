@@ -1,23 +1,18 @@
 <template>
     <div>
-        <h3>Child2组件</h3>
-        <button @click="changeMsg">给父组件传值</button>
+        <h3>Child2组件像父组件传递数据</h3>
+        <slot :data="arr"></slot>
     </div>
 </template>
 
 <script>
     export default {
-        name:"Child2",
-        data(){
-            return {
-                message:"我是大美女"
-            }
-        },
-        methods:{
-            changeMsg(){
-                this.$emit("myEvent",this.message)
-            }
-        }
+       name:"Child2",
+       data(){
+           return {
+               arr:["数学","语文","英语"]
+           }
+       } 
     }
 </script>
 

@@ -1,10 +1,22 @@
 <template>
   <div>
     <h3>App组件</h3>
-    <p>自组件传递过来的属性值：{{message}}</p>
-    <Child @myEvent="changeMsg" />
     <hr>
-    <Child2 ref="child2" />
+    <Child>
+      <p slot="one">有名插槽一替换的内容message:{{message}}</p>
+      <p slot="two">有名插槽二替换的内容</p>
+      <!-- <p>无名插槽替换的内容</p> -->
+    </Child>
+    <hr>
+    <Child2 >
+      <template slot-scope="props">
+        <ul>
+          <li  v-for="(value,index) in props.data" :key="index">
+            {{value}}
+          </li>
+        </ul>
+      </template>
+    </Child2>
   </div>
 </template>
 
@@ -16,18 +28,8 @@
     components:{ Child, Child2 },
     data(){
       return {
-        message:""
+        message:"我是大帅哥"
       }
-    },
-    methods:{
-      changeMsg(msg){
-        this.message=msg;
-      }
-    },
-    mounted(){
-      this.$refs.child2.$on("myEvent",msg => {
-        this.message=msg;
-      })
     }
   }
 </script>
