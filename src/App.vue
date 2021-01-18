@@ -1,8 +1,10 @@
 <template>
   <div>
     <h3>App组件</h3>
-    <p>祖先组件的属性值message:{{ message }}</p>
-    <p>祖先组件的属性值name:{{ obj.name | checkName }}</p>
+    <button @click="show=!show">点击显示或隐藏</button>
+    <transition name="fade">
+      <p v-if="show">执行动画</p>
+    </transition>
     <hr>
     <Child />
     <hr>
@@ -11,41 +13,33 @@
 </template>
 
 <script>
-  import Vue from "vue";
-  // 组册全局filter
-  Vue.filter("checkName",name => {
-    if(name=="jarry"){
-      return "Join Hanks"
-    }
-    return name;
-  })
   import Child from "./components/Child";
   import Child2 from "./components/Child2";
   export default {
-    name:"App",
+    name:'App',
     components:{ Child, Child2 },
     data(){
       return {
-        message:"我是大帅哥",
-        changeMsg:this.changeMessage,
-        obj:{name:"tom"}
-      }
-    },
-    methods:{
-      changeMessage(msg){
-        this.message=msg
-      }
-    },
-    provide(){
-      return {
-        msg:this.message,
-        change:this.changeMsg,
-        obj:this.obj
+        show:false
       }
     }
   }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="css" scoped>
+p{
+  width:200px;
+  height:200px;
+  background:#f00;
+}
+.fade-enter,.fade-leave-to{
+  opacity: 0;
+  transform: rotate(720deg);
+}
+.fade-enter-active,.fade-leave-active{
+  transition:opacity .3s ease-in 0s,transform .3s ease-in 0s;
+}
+.fade-enter-to,.fade-leave{
+  opacity:1;
+}
 </style>
